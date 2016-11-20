@@ -115,7 +115,7 @@ if(preg_match("/PhpTester\\.php$/", $_SERVER["argv"][0])) {
     $tester = new PhpTester;
     $config = json_decode($_SERVER["argv"][1]);
     $test_strings = json_decode($_SERVER["argv"][2]);
-    $result = $tester->test_regex(config, $test_strings);
+    $result = $tester->test_regex($config, $test_strings);
     echo "##START_RESULT##\n";
     echo json_encode($result)."\n";
     echo "##END_RESULT##\n";
