@@ -11,44 +11,44 @@ class PhpTester
         );
 
         try {
-            if(!isset($config["test_type"])) {
+            if(!isset($config=>test_type)) {
                 throw new Exception("test_type parameter doesn't exists.");
             }
 
-            $test_type = $config["test_type"];
-            $regex = $config["regex"];
+            $test_type = $config=>test_type;
+            $regex = $config=>regex;
 
-            if(isset($config["PCRE_CASELESS"]) && $config["PCRE_CASELESS"] == true) {
+            if(isset($config=>PCRE_CASELESS) && $config=>PCRE_CASELESS == true) {
                 $regex += "i";
             }
-            if(isset($config["PCRE_MULTILINE"]) && $config["PCRE_MULTILINE"] == true) {
+            if(isset($config=>PCRE_MULTILINE) && $config=>PCRE_MULTILINE == true) {
                 $regex += "m";
             }
-            if(isset($config["PCRE_DOTALL"]) && $config["PCRE_DOTALL"] == true) {
+            if(isset($config=>PCRE_DOTALL) && $config=>PCRE_DOTALL == true) {
                 $regex += "s";
             }
-            if(isset($config["PCRE_EXTENDED"]) && $config["PCRE_EXTENDED"] == true) {
+            if(isset($config=>PCRE_EXTENDED) && $config=>PCRE_EXTENDED == true) {
                 $regex += "x";
             }
-            if(isset($config["PCRE_ANCHORED"]) && $config["PCRE_ANCHORED"] == true) {
+            if(isset($config=>PCRE_ANCHORED) && $config=>PCRE_ANCHORED == true) {
                 $regex += "A";
             }
-            if(isset($config["PCRE_DOLLAR_ENDONLY"]) && $config["PCRE_DOLLAR_ENDONLY"] == true) {
+            if(isset($config=>PCRE_DOLLAR_ENDONLY) && $config=>PCRE_DOLLAR_ENDONLY == true) {
                 $regex += "D";
             }
-            if(isset($config["S"]) && $config["S"] == true) {
+            if(isset($config=>S) && $config=>S == true) {
                 $regex += "c";
             }
-            if(isset($config["PCRE_UNGREEDY"]) && $config["PCRE_UNGREEDY"] == true) {
+            if(isset($config=>PCRE_UNGREEDY) && $config=>PCRE_UNGREEDY == true) {
                 $regex += "U";
             }
-            if(isset($config["PCRE_EXTRA"]) && $config["PCRE_EXTRA"] == true) {
+            if(isset($config=>PCRE_EXTRA) && $config=>PCRE_EXTRA == true) {
                 $regex += "X";
             }
-            if(isset($config["PCRE_INFO_JCHANGED"]) && $config["PCRE_INFO_JCHANGED"] == true) {
+            if(isset($config=>PCRE_INFO_JCHANGED) && $config=>PCRE_INFO_JCHANGED == true) {
                 $regex += "J";
             }
-            if(isset($config["PCRE_UTF8"]) && $config["PCRE_UTF8"] == true) {
+            if(isset($config=>PCRE_UTF8) && $config=>PCRE_UTF8 == true) {
                 $regex += "u";
             }
 
@@ -77,7 +77,7 @@ class PhpTester
             } else if($test_type == "grep") {
                 $result["type"] = "STRING";
                 $flags = 0;
-                if(isset($config["PREG_GREP_INVERT"]) && $config["PREG_GREP_INVERT"] == true) {
+                if(isset($config=>PREG_GREP_INVERT) && $config=>PREG_GREP_INVERT == true) {
                     $flags = PREG_GREP_INVERT;
                 }
                 $array = preg_grep($regex, $test_strings, $flags);
@@ -86,7 +86,7 @@ class PhpTester
                 }
             } else if($test_type == "replace") {
                 $result["type"] = "STRING";
-                $replacement = $config["replace"];
+                $replacement = $config=>replace;
                 foreach($test_strings as $test_string) {
                     array_push($result["result"]["resultList"], preg_replace($regex, $replacement, $test_string));
                 }
